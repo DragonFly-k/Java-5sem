@@ -9,11 +9,9 @@ public class Selector {
             ((com.sun.messaging.ConnectionFactory) factory).setProperty(ConnectionConfiguration.imqAddressList,
                     "mq://127.0.0.1:7676,mq://127.0.0.1:7676");
             Connection connection = factory.createConnection();
-            Session session = connection.createSession(false, Session.AUTO_ACKNOWLEDGE);
+           // Session session = connection.createSession(false, Session.AUTO_ACKNOWLEDGE);
             Destination ordersQueueSelector = context.createQueue("TradingOrdersQueueSelector");
-            //JMSConsumer consumer = context.createConsumer(ordersQueueSelector, selector);
-            MessageConsumer consumer = session.createConsumer(ordersQueueSelector, "OS='Windows'");
-            connection.start();
+            JMSConsumer consumer = context.createConsumer(ordersQueueSelector,"symbol=BSTU");
             System.out.println("Wait...");
             while (true){
                 Message m = consumer.receive();

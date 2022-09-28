@@ -10,14 +10,13 @@ public class SendSelect {
                     "mq://127.0.0.1:7676,mq://127.0.0.1:7676");
             Connection connection = factory.createConnection();
             Session session = connection.createSession(false, Session.AUTO_ACKNOWLEDGE);
-            //TextMessage message = context.createTextMessage();
-            //message.setText("symbol='BSTU'");
-            Message message = session.createMessage();
-            message.setObjectProperty("OS", "Windows");
+            TextMessage message = context.createTextMessage();
+            message.setText("dklkf");
+            message.setObjectProperty("symbol", "BSTU");
             Destination ordersQueueSelector = context.createQueue("TradingOrdersQueueSelector");
             JMSProducer producer = context.createProducer();
             producer.send(ordersQueueSelector, message);
-            System.out.println("OK");
+            System.out.println("send");
         } catch (JMSException e) {
             e.printStackTrace();
         }
