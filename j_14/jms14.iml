@@ -32,5 +32,7 @@
     <orderEntry type="library" name="Maven: org.glassfish.mq:imq:5.0" level="project" />
     <orderEntry type="library" name="Maven: org.glassfish.mq:imqxm:5.0" level="project" />
     <orderEntry type="library" name="Maven: org.glassfish.mq:jaxm-api:5.0" level="project" />
+    <orderEntry type="library" name="Maven: javax.servlet:servlet-api:2.5" level="project" />
+    <orderEntry type="library" name="Maven: javax.servlet:javax.servlet-api:4.0.1" level="project" />
   </component>
 </module>
