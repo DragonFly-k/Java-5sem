@@ -1,19 +1,16 @@
-package k.jms14.glassfish;
+package com.example.j14_2;
+
 import com.sun.messaging.ConnectionConfiguration;
 import com.sun.messaging.ConnectionFactory;
-
 import javax.jms.*;
 
 public class ConsoleConsumer implements MessageListener {
-
     ConnectionFactory factory = new ConnectionFactory();
     JMSConsumer consumer;
     static int counterID = 0;
-
     ConsoleConsumer() {
         try (JMSContext context = factory.createContext("admin", "admin")) {
             context.setClientID(String.valueOf((counterID++)));
-
             factory.setProperty(ConnectionConfiguration.imqAddressList,
                     "mq://127.0.0.1:7676,mq://127.0.0.1:7676");
             Destination Topic = context.createTopic("topicDestination");
@@ -27,7 +24,6 @@ public class ConsoleConsumer implements MessageListener {
             System.out.println("Error: " + e.getMessage());
         }
     }
-
     @Override
     public void onMessage(Message message) {
         try {
@@ -36,7 +32,6 @@ public class ConsoleConsumer implements MessageListener {
             System.out.println("Error: " + e.getMessage());
         }
     }
-
     public static void main(String[] args) {
         new ConsoleConsumer();
     }

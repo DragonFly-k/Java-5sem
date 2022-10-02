@@ -1,4 +1,4 @@
-package k.jms14.glassfish;
+package com.example.j14_2;
 import com.sun.messaging.ConnectionConfiguration;
 import com.sun.messaging.ConnectionFactory;
 
@@ -22,10 +22,8 @@ public class ServletProducer extends HttpServlet {
             ConnectionFactory factory;
             factory = new ConnectionFactory();
             try (JMSContext context = factory.createContext("admin", "admin")) {
-
                 factory.setProperty(ConnectionConfiguration.imqAddressList,
                         "mq://127.0.0.1:7676,mq://127.0.0.1:7676");
-
                 JMSProducer producer = context.createProducer();
                 Destination Topic = context.createTopic("topicDestination");
                 producer.send(Topic, message);
