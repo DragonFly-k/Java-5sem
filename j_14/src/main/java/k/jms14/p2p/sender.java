@@ -16,7 +16,6 @@ public class sender {
                     "mq://127.0.0.1:7676,mq://127.0.0.1:7676");
             Destination cardsQueue = (Destination) context.createQueue("BrokerBank");
             JMSProducer producer = context.createProducer();
-            // Send msg about card
             producer.send(cardsQueue,"MY FIRST MESSAGE IN JMS");
             System.out.println("send");
         } catch (javax.jms.JMSException e) {

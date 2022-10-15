@@ -13,8 +13,11 @@ public class Receiver2 implements MessageListener {
         try (JMSContext context = factory.createContext("admin", "admin")) {
             factory.setProperty(ConnectionConfiguration.imqAddressList,
                     "mq://127.0.0.1:7676, mq://127.0.0.1:7676");
+            context.setClientID("Client123");
             Destination priceInfo= context.createTopic("PubSub");
-            consumer = context.createConsumer(priceInfo);
+            consumer = context.createDurableConsumer((Topic) priceInfo, "Client2");
+            String selector = "symbol=BSTU";
+            context.createConsumer(priceInfo, selector);
             consumer.setMessageListener(this);
             while (true) {
                 Thread.sleep(1000);
@@ -31,7 +34,6 @@ public class Receiver2 implements MessageListener {
             System.err.println("JMSException: " + e.toString());
         }
     }
-
     public static void main (String[] args){
         new Receiver2();
     }

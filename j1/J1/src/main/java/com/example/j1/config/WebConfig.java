@@ -12,6 +12,7 @@ import org.thymeleaf.templateresolver.ClassLoaderTemplateResolver;
 @Configuration
 public class WebConfig implements WebMvcConfigurer {
     @Bean
+    //бин преобразователь шаблона в обьекты
     public ClassLoaderTemplateResolver templateResolver() {
         var templateResolver = new ClassLoaderTemplateResolver();
         templateResolver.setPrefix("templates/");
@@ -22,6 +23,7 @@ public class WebConfig implements WebMvcConfigurer {
         return templateResolver; }
 
     @Bean
+    //бин движок шаблонов
     public SpringTemplateEngine templateEngine() {
         var templateEngine = new SpringTemplateEngine();
         templateEngine.setTemplateResolver(templateResolver());
@@ -29,6 +31,7 @@ public class WebConfig implements WebMvcConfigurer {
     }
 
     @Bean
+    //бин преобразователь обьектов в html
     public ViewResolver viewResolver() {
         var viewResolver = new ThymeleafViewResolver();
         viewResolver.setTemplateEngine(templateEngine());

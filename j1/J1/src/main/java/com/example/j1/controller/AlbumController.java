@@ -30,8 +30,7 @@ public class AlbumController {
     private String errorMessage;
 
     @GetMapping(value = {"/", "/index"})
-    //@RequestMapping(value = {"/", "/index"}, method = RequestMethod.GET)
-    public ModelAndView index(Model model) {
+     public ModelAndView index(Model model) {
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("index");
         model.addAttribute("message", message);
@@ -40,8 +39,7 @@ public class AlbumController {
     }
 
     @GetMapping(value = {"/allalbums"})
-    //@RequestMapping(value = {"/allalbums"}, method = RequestMethod.GET)
-    public ModelAndView personList(Model model) {
+   public ModelAndView personList(Model model) {
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("albumlist");
         model.addAttribute("albums", albums);
@@ -50,7 +48,6 @@ public class AlbumController {
     }
 
     @GetMapping(value = {"/addalbum"})
-    //@RequestMapping(value = {"/addalbum"}, method = RequestMethod.GET)
     public ModelAndView showAddPersonPage(Model model) {
         ModelAndView modelAndView = new ModelAndView("addalbum");
         AlbumForm albumForm = new AlbumForm();
@@ -60,8 +57,6 @@ public class AlbumController {
     }
 
     @PostMapping("/addalbum")
-    // GetMapping("/")
-    //@RequestMapping(value = {"/addalbum"}, method = RequestMethod.POST)
     public ModelAndView savePerson(Model model, @ModelAttribute("albumform") AlbumForm albumForm) {
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("albumlist");
@@ -79,7 +74,6 @@ public class AlbumController {
         return modelAndView;
     }
 
-    //@RequestMapping(value = {"/delalbum"}, method = RequestMethod.GET)
     @GetMapping(value = {"/delalbum"})
     public ModelAndView showDelAlbumPage(Model model){
         ModelAndView modelAndView = new ModelAndView("delalbum");
@@ -90,17 +84,13 @@ public class AlbumController {
     }
 
     @PostMapping(value = {"/delalbum"})
-    //@RequestMapping(value = {"/delalbum"}, method = RequestMethod.POST)
-    public ModelAndView delBook(Model model,
-                                @ModelAttribute("albumform") AlbumForm albumForm){
+     public ModelAndView delBook(Model model, @ModelAttribute("albumform") AlbumForm albumForm){
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("albumlist");
         String title = albumForm.getTitle();
         String author = albumForm.getAuthor();
         log.info("/delalbum POST was called");
-
-        if(title!=null && title.length()>0
-                && author != null && author.length()>0){
+        if(title!=null && title.length()>0 && author != null && author.length()>0){
             int index = 0;
             for (Album album: albums){
                 if(album.getTitle().equals(title) && album.getAuthor().equals(author)){
@@ -118,7 +108,6 @@ public class AlbumController {
     }
 
     @GetMapping(value = {"/editalbum"})
-    //@RequestMapping(value = {"/editalbum"}, method = RequestMethod.GET)
     public ModelAndView showEditAlbumPage(Model model){
         ModelAndView modelAndView = new ModelAndView("editalbum");
         EditAlbumForm albumForm = new EditAlbumForm();
@@ -128,9 +117,7 @@ public class AlbumController {
     }
 
     @PostMapping(value = {"/editalbum"})
-    //@RequestMapping(value = {"/editalbum"}, method = RequestMethod.POST)
-    public ModelAndView updateAlbum(Model model,
-                                    @ModelAttribute("albumform") EditAlbumForm albumForm){
+     public ModelAndView updateAlbum(Model model, @ModelAttribute("albumform") EditAlbumForm albumForm){
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("albumlist");
         String title = albumForm.getTitle();

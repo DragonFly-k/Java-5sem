@@ -15,7 +15,6 @@ public class receiver0{
             JMSConsumer consumer = context.createConsumer(cardsQueue);
             connection.start();
             System.out.println("Wait...");
-
             while (true){
                 Message m = consumer.receive();
                 if(m != null){

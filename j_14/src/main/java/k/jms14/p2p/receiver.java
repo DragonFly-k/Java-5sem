@@ -18,7 +18,7 @@ public class receiver implements MessageListener {
             Destination cardsQueue = context.createQueue("BrokerBank");
             consumer = context.createConsumer(cardsQueue);
             consumer.setMessageListener(this);
-            System.out.println("Listening to the BrokerBank...");
+            System.out.println("Wait...");
             Thread.sleep(100000);
         } catch (InterruptedException e){
             System.out.println("Error: " + e.getMessage());
