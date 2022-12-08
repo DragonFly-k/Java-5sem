@@ -39,7 +39,7 @@ public class AlbumController {
     }
 
     @GetMapping(value = {"/allalbums"})
-   public ModelAndView personList(Model model) {
+    public ModelAndView personList(Model model) {
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("albumlist");
         model.addAttribute("albums", albums);
